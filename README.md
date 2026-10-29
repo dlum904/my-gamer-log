@@ -1,75 +1,23 @@
-# React + TypeScript + Vite
+#My Gamer Log
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+🛠️ The Architecture
+```
+[ React + TypeScript Frontend ] <--- JSON / REST API ---> [ Django Backend ] <---> [ PostgreSQL ]
+                                                                 |
+                                                                 v
+                                                      [ IGDB or RAWG Gaming API ]
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+##🎨 Frontend: React + TypeScript
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+TypeScript adds strict type-safety, which is incredibly helpful when handling large amounts of complex video game data (like structural variations in game platforms, genres, and release dates).
+• Build Tool: Vite. It is significantly faster and more lightweight than the outdated Create React App.
+• Styling: Tailwind CSS. It allows you to build a sleek, dark-themed gaming UI quickly using utility classes directly in your markup.
+• State Management & Data Fetching: TanStack Query (formerly React Query). This is essential for caching data so that when a user moves between your home feed and a game page, the site feels instantaneous.
+• Routing: React Router to handle navigation between game pages, playlists, and user profiles.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 
-```
+##⚙️ Backend: Python
+Django REST Framework (DRF)
+• Why it fits: Django includes a built-in user authentication system and a powerful automated Admin Panel. If you want a quick way to manually edit comments or view user data without writing backend tools from scratch, Django saves a lot of time.
+• Database Tool (ORM): Django’s built-in, beginner-friendly ORM.
